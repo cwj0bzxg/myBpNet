@@ -1,13 +1,18 @@
+/*
+* author: cwj
+* date: 2022å¹´3æœˆ26æ—¥
+*/
+
 #include<Eigen/Dense>
 #include<iostream>
 #include"BpNet.h"
 #include<time.h>
 using namespace std;
 
-
+// bpNetåº•å±‚å‡½æ•°çš„ç”¨ä¾‹
 int main()
 {
-	// ¶¨ÒåÈı¸öÑù±¾
+	// å®šä¹‰ä¸‰ä¸ªæ ·æœ¬
 	Eigen::VectorXd vInput(10), vInput1(10),vInput2(10);
 	Eigen::VectorXd vOuput(4);
 	Eigen::VectorXd Taget(4), Taget1(4),Taget2(4);
@@ -20,13 +25,13 @@ int main()
 
 	clock_t start, end;
 
-	bpNet layerNet(10, 4);  // ³õÊ¼»¯BPÉñ¾­ÍøÂç
-	layerNet.addNeuronNet(10, 16);  // ²åÈëÁ½¸öÒş²Ø²ã
+	bpNet layerNet(10, 4);  // åˆå§‹åŒ–BPç¥ç»ç½‘ç»œ
+	layerNet.addNeuronNet(10, 16);  // æ’å…¥ä¸¤ä¸ªéšè—å±‚
 	layerNet.addNeuronNet(16, 16);  
-	layerNet.addNeuronNet(16, 4);  // ²åÈëÒ»¸öÊä³ö²ã
+	layerNet.addNeuronNet(16, 4);  // æ’å…¥ä¸€ä¸ªè¾“å‡ºå±‚
 	start = clock();
-	for (int i = 0; i < 2000; i++) {  // Ñ­»·2000´Î
-		// ÒÀ´Î¸ù¾İÉÏÃæµÄÈı¸öÑù±¾ÑµÁ·Éñ¾­ÍøÂç
+	for (int i = 0; i < 2000; i++) {  // å¾ªç¯2000æ¬¡
+		// ä¾æ¬¡æ ¹æ®ä¸Šé¢çš„ä¸‰ä¸ªæ ·æœ¬è®­ç»ƒç¥ç»ç½‘ç»œ
 		layerNet.trian_bp(vInput, Taget);
 		layerNet.trian_bp(vInput1, Taget1);
 		layerNet.trian_bp(vInput2, Taget2);
@@ -34,7 +39,7 @@ int main()
 		
 	end = clock();
 
-	// Êä³öÔ¤²â½á¹û
+	// è¾“å‡ºé¢„æµ‹ç»“æœ
 	cout << "--0101--" << endl;
 	layerNet.predict_bp(vInput, vOuput);
 	cout << vOuput << endl;
