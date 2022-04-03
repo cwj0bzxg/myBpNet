@@ -1,6 +1,6 @@
 /*
 * author: cwj
-* date: 2022Äê4ÔÂ2ÈÕ
+* date: 2022å¹´4æœˆ2æ—¥
 */
 #include<fstream>
 #include<iostream>
@@ -10,11 +10,11 @@
 using namespace std;
 int main()
 {
-	string filename3 = ".\\t10k-labels-idx1-ubyte\\t10k-labels.idx1-ubyte";  // ²âÊÔÊı¾İ
+	string filename3 = ".\\t10k-labels-idx1-ubyte\\t10k-labels.idx1-ubyte";  // æµ‹è¯•æ•°æ®
 	string filename4 = ".\\t10k-images-idx3-ubyte\\t10k-images.idx3-ubyte";
 
-	bpData test_data(filename3, filename4, 10000);  // ²âÊÔÊı¾İÀà
+	bpData test_data(filename3, filename4, 10000);  // æµ‹è¯•æ•°æ®ç±»
 
-	bpNet newNet(".\\60000_5matrix.txt");                      // ÔØÈëÄ£ĞÍ
-	cout << "×¼È·ÂÊ£º" << test_bp(newNet, test_data) << endl;  // Êä³ö²âÊÔ½á¹û
+	bpNet newNet(".\\60000_5matrix.txt");                      // è½½å…¥æ¨¡å‹
+	cout << "å®å¹³å‡ï¼š" << test_bp(newNet, test_data) << endl;  // è¾“å‡ºæµ‹è¯•ç»“æœ
 }
