@@ -1,4 +1,6 @@
 #include"BpData.h"
+#include<vector>
+#include<tuple>
 
 int reverse_int(int i)
 {
@@ -150,17 +152,32 @@ double test_bp(bpNet& myNet, bpData& myData)
 	int rows = myData.get_number_of_label();
 	int cols = myData.get_n_rows() * myData.get_n_cols();
 
-	double accuracy_times = 0, all_times = 0;  // 记录
+	//double accuracy_times = 0, all_times = 0;  // 记录
+
+	// 宏平均
+	std::vector<std::tuple<double, double> > accuracy(10, std::tuple<double, double>{0, 0});
 
 	for (int row = 0; row < rows; row++) {
 		input_vec = myData._images_mat.block(row, 0, 1, cols).transpose();
 		myNet.predict_bp(input_vec, output_vec);
 		int i = 0;
 		output_vec.maxCoeff(&i);
-		if (myData._label_vec[row] == i) accuracy_times++;
-		all_times++;
+		//if (myData._label_vec[row] == i) accuracy_times++;
+		if (myData._label_vec[row] == i) {
+			//accuracy_times++;
+			std::get<0>(accuracy[i])++;
+		}
+		std::get<1>(accuracy[i])++;
+		//all_times++;
 	}
-	return accuracy_times / all_times;
+	double sum = 0;
+	for (int i = 0; i < accuracy.size(); i++) {
+		std::cout << i << " : " << std::get<0>(accuracy[i]) / std::get<1>(accuracy[i]) << std::endl;
+		sum = sum + std::get<0>(accuracy[i]) / std::get<1>(accuracy[i]);
+		
+	}
+	//return accuracy_times / all_times;
+	return sum / accuracy.size();  // 返回宏平均
 }
 
 int predict_bp(bpNet& myNet, Eigen::VectorXd& Input)
