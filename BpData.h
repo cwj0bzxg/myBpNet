@@ -1,6 +1,6 @@
 /*
 * author: cwj
-* data: 2022Äê4ÔÂ1ÈÕ
+* data: 2022å¹´4æœˆ1æ—¥
 */
 
 #pragma once
@@ -10,43 +10,43 @@
 #include<fstream>
 #include<string>
 /* 
-* Õâ¸öÍ·ÎÄ¼şµ÷ÓÃBpNet.hÍ·ÎÄ¼ş·â×°µÄ·´Ïò´«²¥Ëã·¨ÊµÏÖÊÖĞ´Êı×ÖÊ¶±ğ¡£
-* Õâ¸öÎÄ¼şÖĞ¶¨ÒåÁËÒ»¸öÀàbpMnistData£¬¶ÔMnistÊı¾İ¼¯½øĞĞ¹ÜÀí£¬
-* ²¢¶¨ÒåÁËÈı¸öº¯Êı·Ö±ğ½øĞĞÊÖĞ´Êı×ÖÊ¶±ğµÄÑµÁ·¡¢²âÊÔºÍÔ¤²â
+* è¿™ä¸ªå¤´æ–‡ä»¶è°ƒç”¨BpNet.hå¤´æ–‡ä»¶å°è£…çš„åå‘ä¼ æ’­ç®—æ³•å®ç°æ‰‹å†™æ•°å­—è¯†åˆ«ã€‚
+* è¿™ä¸ªæ–‡ä»¶ä¸­å®šä¹‰äº†ä¸€ä¸ªç±»bpDataï¼Œå¯¹Mnistæ•°æ®é›†è¿›è¡Œç®¡ç†ï¼Œ
+* å¹¶å®šä¹‰äº†ä¸‰ä¸ªå‡½æ•°åˆ†åˆ«è¿›è¡Œæ‰‹å†™æ•°å­—è¯†åˆ«çš„è®­ç»ƒã€æµ‹è¯•å’Œé¢„æµ‹
 */
 class bpData;
 
-bool train_bp(bpNet& myNet, bpData& myData, int epoch = 5);  // ÑµÁ·£¬Ä¬ÈÏÑµÁ· 5 ´Î
-double test_bp(bpNet& myNet, bpData& myData);  // ²âÊÔ
-int predict_bp(bpNet& myNet, Eigen::VectorXd& Input);  // Ô¤²â
+bool train_bp(bpNet& myNet, bpData& myData, int epoch = 5);  // è®­ç»ƒï¼Œé»˜è®¤è®­ç»ƒ 5 æ¬¡
+double test_bp(bpNet& myNet, bpData& myData);  // æµ‹è¯•
+int predict_bp(bpNet& myNet, Eigen::VectorXd& Input);  // é¢„æµ‹
 
 class bpData
 {
-	// ÉùÃ÷ÓÑÔªº¯Êı£¬ÒÔ±ãÔÚtrain_bpºÍtest_bpÖĞÖ±½Óµ÷ÓÃbpDataµÄË½ÓĞ³ÉÔ±±äÁ¿
+	// å£°æ˜å‹å…ƒå‡½æ•°ï¼Œä»¥ä¾¿åœ¨train_bpå’Œtest_bpä¸­ç›´æ¥è°ƒç”¨bpDataçš„ç§æœ‰æˆå‘˜å˜é‡
 	friend bool train_bp(bpNet& myNet, bpData& myData, int epoch);
 	friend double test_bp(bpNet& myNet, bpData& myData);
 public:
-	// label_filename£º±êÇ©ÎÄ¼ş¡¢images_filename£ºÍ¼Æ¬ÎÄ¼ş¡¢max_rows£ºÔØÈëĞĞÊı
+	// label_filenameï¼šæ ‡ç­¾æ–‡ä»¶ã€images_filenameï¼šå›¾ç‰‡æ–‡ä»¶ã€max_rowsï¼šè½½å…¥è¡Œæ•°
 	bpData(const std::string& label_filename, const std::string& images_filename,int max_rows=100000);
 	//bpData() = default;
-	bool read_label();  // ÔØÈë±êÇ©Êı¾İ
-	bool read_images(); // ÔØÈëÍ¼Æ¬Êı¾İ
-	int get_number_of_label() { return std::min(_number_of_label, _max_rows); }   // ·µ»Ø±êÇ©ÊıÁ¿
-	int get_number_of_images() { return std::min(_number_of_images, _max_rows); } // ·µ»ØÍ¼Æ¬ÊıÁ¿
-	int get_n_rows() { return _n_rows; }  // ·µ»ØÒ»ÕÅÍ¼Æ¬ÓĞ¶àÉÙĞĞ
-	int get_n_cols() { return _n_cols; }  // ·µ»ØÒ»ÕÅÍ¼Æ¬ÓĞ¶àÉÙÁĞ
+	bool read_label();  // è½½å…¥æ ‡ç­¾æ•°æ®
+	bool read_images(); // è½½å…¥å›¾ç‰‡æ•°æ®
+	int get_number_of_label() { return std::min(_number_of_label, _max_rows); }   // è¿”å›æ ‡ç­¾æ•°é‡
+	int get_number_of_images() { return std::min(_number_of_images, _max_rows); } // è¿”å›å›¾ç‰‡æ•°é‡
+	int get_n_rows() { return _n_rows; }  // è¿”å›ä¸€å¼ å›¾ç‰‡æœ‰å¤šå°‘è¡Œ
+	int get_n_cols() { return _n_cols; }  // è¿”å›ä¸€å¼ å›¾ç‰‡æœ‰å¤šå°‘åˆ—
 private:
-	bool read_label_info(const std::string& filename);  // »ñÈ¡Êı¾İ¼¯ĞÅÏ¢
+	bool read_label_info(const std::string& filename);  // è·å–æ•°æ®é›†ä¿¡æ¯
 	bool read_images_info(const std::string& filename);
-	Eigen::VectorXi _label_vec;  // ±êÇ©Êı¾İ
-	Eigen::MatrixXd _images_mat; // Í¼Æ¬Êı¾İ
-	std::string _label_file;     // ±êÇ©ÎÄ¼şµØÖ·
-	std::string _images_file;    // Í¼Æ¬ÎÄ¼şµØÖ·
-	int _number_of_label;        // ±êÇ©ÊıÁ¿
-	int _number_of_images;       // Í¼Æ¬ÊıÁ¿
-	int _n_rows;                 // Ò»ÕÅÍ¼Æ¬µÄĞĞÊı
-	int _n_cols;                 // Ò»ÕÅÍ¼Æ¬µÄĞĞÊı
-	int _max_rows;               // ¶ÁÈëĞĞÊı
+	Eigen::VectorXi _label_vec;  // æ ‡ç­¾æ•°æ®
+	Eigen::MatrixXd _images_mat; // å›¾ç‰‡æ•°æ®
+	std::string _label_file;     // æ ‡ç­¾æ–‡ä»¶åœ°å€
+	std::string _images_file;    // å›¾ç‰‡æ–‡ä»¶åœ°å€
+	int _number_of_label;        // æ ‡ç­¾æ•°é‡
+	int _number_of_images;       // å›¾ç‰‡æ•°é‡
+	int _n_rows;                 // ä¸€å¼ å›¾ç‰‡çš„è¡Œæ•°
+	int _n_cols;                 // ä¸€å¼ å›¾ç‰‡çš„è¡Œæ•°
+	int _max_rows;               // è¯»å…¥è¡Œæ•°
 };
 
-int reverse_int(int i);          // ¶Ô i ½øĞĞÒ»Ğ©Î»ÔËËã
+int reverse_int(int i);          // å¯¹ i è¿›è¡Œä¸€äº›ä½è¿ç®—
