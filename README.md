@@ -5,8 +5,8 @@
 C++11、Eigen
 
 ### 使用
-1、下载Eigen库 https://eigen.tuxfamily.org/dox/group__QuickRefPage.html  
-2、下载数据集 http://yann.lecun.com/exdb/mnist/  
+1、下载Eigen库
+2、下载数据集
 3、将头文件和Cpp文件复制到你的项目中  
 4、修改数据集的文件路径  
 5、运行  
@@ -27,8 +27,3 @@ C++11、Eigen
 
 ### 参考资料
 1. 《机器学习》 周志华
-2. https://blog.csdn.net/xuanwolanxue/article/details/71565934
-3. https://eigen.tuxfamily.org/dox/group__QuickRefPage.html
-4. https://n3verl4nd.blog.csdn.net/article/details/53052963
-5. https://blog.csdn.net/qq_20936739/article/details/82011320
-6. https://blog.csdn.net/weixin_41661099/article/details/105223866
